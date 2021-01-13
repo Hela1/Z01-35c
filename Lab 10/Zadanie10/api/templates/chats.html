@@ -1,0 +1,50 @@
+{% extends "prelogin_layout.html" %}
+
+
+{% block title %} Chats {% endblock %}
+{% block content %}
+    <h1 style="text-align: center; margin-top: 0px; top: 0px; left: 0px; right: 0px; position:fixed; background-color: aquamarine;"> {{ user2 }} </h1>
+
+    <div id='chat'>
+        <div id='chat'>
+            <br />
+            {% for m in msg %}
+                {% if m[0] == current_user.username %}
+                    <p style="text-align: right; font-size: 20px;"><i>{{ m[1] }}</i> : <b> {{ m[0] }} </b></p>
+                    <p style="text-align: right; font-size: 10px;">{{ m[2] }} {{ m[3] }} </p>
+                {% endif %}
+                {% if m[0] != current_user.username %}
+
+                    <p style="font-size: 20px;"><b> {{ m[0] }} : </b> <i>{{ m[1] }}</i></p>
+                    <p style="font-size: 10px;">{{ m[2] }} {{ m[3] }} </p>
+                {% endif %}
+            {% endfor %}
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+
+    <div style="left:0px;right:0px;position: absolute; bottom: 0px; background-color: aquamarine; position:fixed;">
+        <form action="" , method="POST">
+            <div>
+                {{ msg_form.msg(class_='form-control',
+                placeholder="user",
+                autocomplete='off',
+                autofocus=true) }}
+            </div>
+            <div>
+                {{ msg_form.submit_button }}
+            </div>
+    
+            {{ msg_form.csrf_token }}
+    
+        </form>
+    </div>
+
+
+{% endblock %}
+
+{% block foot %}
+
+{% endblock %}
